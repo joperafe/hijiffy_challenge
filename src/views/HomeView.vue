@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <AddTodo v-on:add-todo="addTodo" />
-    <TodosList v-bind:todos="todos" v-on:del-todo="deleteTodo" />
+    <TodosList
+      v-bind:todos="todos"
+      v-on:del-todo="deleteTodo"
+      v-on:check-todo="checkTodo"
+      v-on:update-todo="updateTodo"
+    />
   </div>
 </template>
 
@@ -23,17 +28,8 @@ export default {
     };
   },
   methods: {
-    deleteTodo(id) {
-      axios
-        .delete(`${VUE_APP_API_URL}/${id}`)
-        .then(() => (this.todos = this.todos.filter((todo) => todo.id !== id)))
-        .catch((err) => console.log(err));
-
-      // this.todos = this.todos.filter((todo) => todo.id !== id);
-    },
     addTodo(todo) {
       const { description, completed } = todo;
-
       axios
         .post(VUE_APP_API_URL, {
           description,
@@ -41,12 +37,43 @@ export default {
         })
         .then((res) => (this.todos = [...this.todos, res.data]))
         .catch((err) => console.log(err));
-
-      // this.todos = [...this.todos, todo];
+    },
+    deleteTodo(id) {
+      axios
+        .delete(`${VUE_APP_API_URL}/${id}`)
+        .then(() => (this.todos = this.todos.filter((todo) => todo.id !== id)))
+        .catch((err) => console.log(err));
+    },
+    // @ On check todo update todo completed state in the api
+    checkTodo(todo) {
+      const { id, completed } = todo;
+      const newState = !completed;
+      axios
+        .put(`${VUE_APP_API_URL}/${id}`, {
+          completed: newState,
+        })
+        .then((res) => (this.todos = [...this.todos]))
+        .catch((err) => console.log(err));
+    },
+    // @ Update task description in the api
+    updateTodo({ id, description }) {
+      axios
+        .put(`${VUE_APP_API_URL}/${id}`, {
+          description,
+        })
+        .then(
+          () =>
+            (this.todos = this.todos.map((todo) => {
+              if (todo.id === id) {
+                return { ...todo, description };
+              }
+              return todo;
+            }))
+        )
+        .catch((err) => console.log(err));
     },
   },
   created() {
-    console.log(VUE_APP_API_URL);
     // Fetching todos from external api
     axios
       .get(`${VUE_APP_API_URL}?sortBy=createdAt&order=desc&page=1&limit=10`)
