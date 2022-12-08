@@ -10,12 +10,12 @@
     <p v-if="!editing" class="description">{{ todo.description }}</p>
     <div v-else class="description">
       <input type="text" v-model="newDescription" name="newDesc" :placeholder="todo.description" />
-      <button @click="updateTodo">Update</button>
+      <button class="btn-update" @click="updateTodo">Update</button>
     </div>
     <div class="actions">
       <button @click="enableEdit" class="edit">
-        <div v-if="!editing">Edit todo</div>
-        <div v-else>Cancel edit</div>
+        <div v-if="!editing">Edit Todo</div>
+        <div v-else>Cancel Edit</div>
       </button>
       <button @click="$emit('del-todo', todo.id)" class="del">x</button>
     </div>
@@ -86,6 +86,11 @@ export default {
   padding: 5px 10px;
   margin-right: 20px;
   border-radius: 50%;
+  cursor: pointer;
+}
+
+.btn-update {
+  margin-left: 4px;
   cursor: pointer;
 }
 </style>

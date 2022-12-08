@@ -18,6 +18,14 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ "../views/AboutView.vue").then((m) => m.default),
   },
+  {
+    path: "/completed",
+    name: "completed",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ "../views/CompletedTodosView.vue").then((m) => m.default),
+  },
 ];
 
 const router = new VueRouter({

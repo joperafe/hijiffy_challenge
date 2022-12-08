@@ -75,8 +75,9 @@ export default {
   },
   created() {
     // Fetching todos from external api
+    // &page=1&limit=10
     axios
-      .get(`${VUE_APP_API_URL}?sortBy=createdAt&order=desc&page=1&limit=10`)
+      .get(`${VUE_APP_API_URL}?sortBy=createdAt&order=desc`)
       .then((res) => {
         this.todos = res.data;
       })
@@ -100,7 +101,7 @@ body {
 .btn {
   display: inline-block;
   border: none;
-  background: #555;
+  background: rgb(55, 55, 55);
   color: #fff;
   padding: 7px 20px;
   cursor: pointer;

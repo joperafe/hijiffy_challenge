@@ -2,8 +2,8 @@
   <header class="header">
     <h1>Todo List</h1>
     <div id="nav">
-      <router-link to="/">Home</router-link>&nbsp;|&nbsp;
-      <router-link to="/about">About</router-link>
+      <router-link to="/">Home</router-link>&nbsp;|&nbsp; <router-link to="/about">About</router-link>&nbsp;|&nbsp;
+      <router-link to="/completed">Completed Todos</router-link>
     </div>
   </header>
 </template>
@@ -16,14 +16,14 @@ export default {
 
 <style scoped>
 header {
-  background: #333;
-  color: #fff;
+  background: rgb(245, 173, 71);
+  color: rgb(55, 55, 55);
   text-align: center;
   padding: 10px;
 }
 
 header a {
-  color: #fff;
+  color: rgb(55, 55, 55);
   padding-right: 5px;
   text-decoration: none;
 }
