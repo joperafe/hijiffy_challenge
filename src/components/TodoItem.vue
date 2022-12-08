@@ -2,6 +2,7 @@
   <div class="todo-item" v-bind:class="{ 'is-complete': todo.completed }">
     <div class="wrapper">
       <input
+        id="check-todo"
         @click="$emit('check-todo', todo)"
         type="checkbox"
         v-bind:checked="todo.completed"
@@ -17,7 +18,7 @@
           <div v-if="!editing">Edit Todo</div>
           <div v-else>Cancel Edit</div>
         </button>
-        <button @click="$emit('del-todo', todo.id)" class="del">x</button>
+        <button id="del-todo" @click="$emit('del-todo', todo.id)" class="del">x</button>
       </div>
     </div>
   </div>
