@@ -1,23 +1,24 @@
 <template>
   <div class="todo-item" v-bind:class="{ 'is-complete': todo.completed }">
-    <input
-      @click="$emit('check-todo', todo)"
-      type="checkbox"
-      v-bind:checked="todo.completed"
-      v-on:change="markComplete"
-    />
-
-    <p v-if="!editing" class="description">{{ todo.description }}</p>
-    <div v-else class="description">
-      <input type="text" v-model="newDescription" name="newDesc" :placeholder="todo.description" />
-      <button class="btn-update" @click="updateTodo">Update</button>
-    </div>
-    <div class="actions">
-      <button @click="enableEdit" class="edit">
-        <div v-if="!editing">Edit Todo</div>
-        <div v-else>Cancel Edit</div>
-      </button>
-      <button @click="$emit('del-todo', todo.id)" class="del">x</button>
+    <div class="wrapper">
+      <input
+        @click="$emit('check-todo', todo)"
+        type="checkbox"
+        v-bind:checked="todo.completed"
+        v-on:change="markComplete"
+      />
+      <p v-if="!editing" class="description">{{ todo.description }}</p>
+      <div v-else class="description">
+        <input type="text" v-model="newDescription" name="newDesc" :placeholder="todo.description" />
+        <button class="btn-update" @click="updateTodo">Update</button>
+      </div>
+      <div class="actions">
+        <button @click="enableEdit" class="edit">
+          <div v-if="!editing">Edit Todo</div>
+          <div v-else>Cancel Edit</div>
+        </button>
+        <button @click="$emit('del-todo', todo.id)" class="del">x</button>
+      </div>
     </div>
   </div>
 </template>
@@ -54,10 +55,16 @@ export default {
 <style scoped>
 .todo-item {
   display: flex;
-  align-items: center;
+  justify-content: center;
   background: #f4f4f4f4;
   padding: 10px;
   border-bottom: 1px #ccc dotted;
+}
+
+.wrapper {
+  width: 60vw;
+  display: flex;
+  align-items: center;
 }
 
 .is-complete {

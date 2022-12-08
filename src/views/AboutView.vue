@@ -1,7 +1,7 @@
 <template>
   <div class="about">
-    <h1>About section</h1>
-    <p>This is the TodoList app built with vue</p>
+    <h1>About</h1>
+    <p>This is a Todo List app built with Vue2 and friends.</p>
   </div>
 </template>
 

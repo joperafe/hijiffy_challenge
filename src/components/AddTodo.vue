@@ -1,9 +1,17 @@
 <template>
   <div class="container">
     <form @submit="addTodo">
-      <input type="text" v-model="description" name="description" placeholder="Add Todo..." />
+      <input
+        :class="{ 'error-input': error }"
+        id="add-todo"
+        type="text"
+        v-model="description"
+        name="description"
+        placeholder="Add Todo..."
+      />
       <input type="submit" value="Submit" class="btn" />
     </form>
+    <span v-if="error" class="error">{{ error }}</span>
   </div>
 </template>
 
@@ -13,22 +21,28 @@ export default {
   data() {
     return {
       description: "",
+      error: null,
     };
   },
   methods: {
     addTodo(e) {
       e.preventDefault();
 
-      const newTodo = {
-        description: this.description,
-        completed: false,
-      };
+      if (this.description) {
+        this.error = null;
+        const newTodo = {
+          description: this.description,
+          completed: false,
+        };
 
-      // @ Send todo to parent
-      this.$emit("add-todo", newTodo);
+        // @ Send todo to parent
+        this.$emit("add-todo", newTodo);
 
-      // @ Cleaning form after submit
-      this.description = "";
+        // @ Cleaning form after submit
+        this.description = "";
+      } else {
+        this.error = "Todo must have a description";
+      }
     },
   },
 };
@@ -53,5 +67,13 @@ input[type="text"] {
 .btn {
   margin-left: 2px;
   border-radius: 5px;
+}
+
+.error {
+  color: red;
+}
+
+.error-input {
+  border-color: red;
 }
 </style>

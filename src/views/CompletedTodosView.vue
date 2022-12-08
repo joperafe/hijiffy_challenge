@@ -1,11 +1,17 @@
 <template>
   <div class="completed">
-    <h2>Check out all your completed tasks!</h2>
-    <p>In this section you'll be able to see a list with all the completed tasks.</p>
-    <div class="list">
-      <ol>
-        <li v-for="todo in todos" :key="todo.id">{{ todo.description }}</li>
-      </ol>
+    <div v-if="todos.length">
+      <h2>Check out all your completed tasks!</h2>
+      <p>In this section you'll be able to see a list with all the completed tasks.</p>
+      <div class="list">
+        <ol>
+          <li v-for="todo in todos" :key="todo.id">{{ todo.description }}</li>
+        </ol>
+      </div>
+    </div>
+    <div v-else class="wrapper">
+      <p>No completed Todos to be displayed...</p>
+      <h3>Be strong and start completing those Todos!</h3>
     </div>
   </div>
 </template>
@@ -50,5 +56,14 @@ export default {
 }
 .list ol > li::marker {
   font-weight: bold;
+}
+
+.wrapper {
+  width: 100%;
+  text-align: center;
+  padding: 50px;
+}
+.wrapper p {
+  padding-bottom: 20px;
 }
 </style>

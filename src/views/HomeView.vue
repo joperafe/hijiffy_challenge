@@ -35,7 +35,8 @@ export default {
           description,
           completed,
         })
-        .then((res) => (this.todos = [...this.todos, res.data]))
+        // ! res.data first so that the newly created todo goes to the top of the list
+        .then((res) => (this.todos = [res.data, ...this.todos]))
         .catch((err) => console.log(err));
     },
     deleteTodo(id) {
