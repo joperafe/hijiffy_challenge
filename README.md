@@ -1,29 +1,5 @@
 # hijiffy-challenge
 
-## Project setup
-```
-npm install
-```
+Todo application using Vue2.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+The app allows the user to perform CRUD operations in a to-do application that is connected to an external API
