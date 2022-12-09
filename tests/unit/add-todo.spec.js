@@ -20,4 +20,20 @@ describe("AddTodo.vue", () => {
 
     // expect(error.text()).toBe("Todo must have a description");
   });
+
+  // it("add new todo", () => {
+  //   const wrapper = mount(AddTodo, {
+  //     propsData: { description: "this todo" },
+  //   });
+
+  //   const addTodo = jest.fn();
+
+  //   wrapper.setMethods({
+  //     addTodo: addTodo,
+  //   });
+
+  //   wrapper.find("#submit").trigger("click");
+
+  //   expect(addTodo).toHaveBeenCalled();
+  // });
 });

@@ -18,7 +18,7 @@
           <div v-if="!editing">Edit Todo</div>
           <div v-else>Cancel Edit</div>
         </button>
-        <button id="del-todo" @click="$emit('del-todo', todo.id)" class="del">x</button>
+        <button id="del-todo" @click="$emit('del-todo', todo)" class="del">x</button>
       </div>
     </div>
   </div>
