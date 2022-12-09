@@ -15,7 +15,7 @@
       </div>
       <div class="actions">
         <button @click="enableEdit" class="edit">
-          <div v-if="!editing">Edit Todo</div>
+          <div v-if="!editing">Edit</div>
           <div v-else>Cancel Edit</div>
         </button>
         <button id="del-todo" @click="$emit('del-todo', todo)" class="del">x</button>

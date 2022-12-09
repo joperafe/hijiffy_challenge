@@ -1,7 +1,15 @@
 <template>
   <div>
     <div v-if="todosToShow.length">
-      <button class="filter" @click="filterTodos">Filter by state</button>
+      <div class="info-wrapper">
+        <div class="filter-wrapper">
+          <p>Filter by state:</p>
+          <button class="filter" @click="filterTodos">{{ filterText }}</button>
+        </div>
+        <div class="total-wrapper">
+          <p><b>Todos total:</b> {{ this.todosTotal }}</p>
+        </div>
+      </div>
       <div v-for="todo in todosToShow" :key="todo.id">
         <TodoItem
           v-bind:todo="todo"
@@ -35,10 +43,12 @@ export default {
     return {
       // @ Todos filter value
       filterValue: null,
+      filterText: "Show all",
       page: 1,
       currentPage: 1,
       pageNumber: 0,
       pageSize: 10,
+      todosTotal: 0,
     };
   },
   methods: {
@@ -46,11 +56,14 @@ export default {
       switch (this.filterValue) {
         case null:
           this.filterValue = true;
+          this.filterText = "Incompleted";
           return;
         case true:
           this.filterValue = false;
+          this.filterText = "Completed";
           return;
         case false:
+          this.filterText = "Show all";
           this.filterValue = null;
           return;
         default:
@@ -72,6 +85,7 @@ export default {
     // After the filter chunk the todos into arrays to display with pagination according to the number of todos per page, pageSize(default=10)
     todosToShow() {
       if (this.todos.length) {
+        this.todosTotal = this.todos.length;
         const filteredTodos = this.todos.filter((item) => item.completed !== this.filterValue);
 
         const chunks = chunkArray(filteredTodos, this.pageSize);
@@ -95,8 +109,21 @@ export default {
   padding-bottom: 20px;
 }
 
+.info-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filter-wrapper {
+  margin: 0 0 5vh 5vw;
+}
 .filter {
-  margin: 0 0 20px 20px;
-  padding: 5px;
+  padding: 6px;
+  width: 100px;
+}
+
+.total-wrapper {
+  margin-right: 5vw;
 }
 </style>
