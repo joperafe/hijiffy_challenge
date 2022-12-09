@@ -37,16 +37,18 @@ describe("TodoItem.vue", () => {
     expect(checkbox.element.checked).toBeTruthy();
   });
 
-  it("check todo checkbox", async () => {
-    const todo = { id: 1, description: "one todo", completed: false };
+  // it("call deleteTodo when delete button is clicked", async () => {
+  //   const todo = { id: 1, description: "one todo", completed: false };
 
-    const wrapper = mount(TodoItem, {
-      propsData: { todo: todo },
-    });
+  //   const wrapper = mount(TodoItem, {
+  //     propsData: { todo: todo },
+  //   });
 
-    const checkbox = wrapper.find("#check-todo");
-    await checkbox.setChecked();
+  //   const deleteMethodStub = sinon.stub();
 
-    expect(checkbox.element.checked).toBeTruthy();
-  });
+  //   const deleteButton = wrapper.find("#del-todo");
+  //   await deleteButton.trigger("click");
+
+  //   expect(deleteMethodStub.called).toBeTruthy();
+  // });
 });

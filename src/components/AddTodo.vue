@@ -9,9 +9,9 @@
         name="description"
         placeholder="Add Todo..."
       />
-      <input type="submit" value="Submit" class="btn" />
+      <input id="submit" type="submit" value="Submit" class="btn" />
     </form>
-    <span v-if="error" class="error">{{ error }}</span>
+    <span id="error" v-if="error" class="error">{{ error }}</span>
   </div>
 </template>
 
